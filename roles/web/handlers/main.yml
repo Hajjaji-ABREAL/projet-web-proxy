@@ -1,2 +1,14 @@
 ---
 # handlers file for web
+- name: start apache
+  service: name=httpd state=started enabled=yes
+
+- name: restart apache
+  service: name=httpd state=restarted enabled=yes
+
+- name: start mariadb
+  service: name=mariadb state=started enabled=yes
+
+
+- name: Start the MySQL service
+  service: name=mysqld state=started

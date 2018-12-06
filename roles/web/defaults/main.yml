@@ -1,2 +1,17 @@
 ---
 # defaults file for web
+php_packages:
+  - epel-release
+  - texlive
+  - php7.0
+  - php7.0-common
+  - php7.0-cgi
+  - php7.0-gd
+  - php7.0-mysql
+  - php7.0-fpm
+  - php7.0-curl
+  - php7.0-xml
+  - php7.0-intl
+  - php7.0-xcache
+  - php7.0-mbstring
+  - php-apcu

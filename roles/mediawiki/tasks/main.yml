@@ -1,2 +1,14 @@
 ---
 # tasks file for mediawiki
+- name: Downloading MediaWiki
+  shell: curl -O http://releases.wikimedia.org/mediawiki/1.24/mediawiki-1.24.1.tar.gz
+  
+tar xvzf mediawiki-*.tar.gz
+mv mediawiki-1.24.1/* /var/www/html
+Creating a Database
+We will first log in to the MySQL shell:
+mysql -u root -p
+CREATE DATABASE my_wiki;
+
+
+  

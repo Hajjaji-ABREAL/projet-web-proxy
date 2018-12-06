@@ -1,2 +1,42 @@
 ---
 # tasks file for web
+- name: update
+  yum: update_cache=yes
+
+- name: installation apache
+  yum: name=httpd state=latest
+  notify: start apache
+
+- name: mettre a jour les regles de firewall port 80 et 443 ( autoriser le trafic Web )
+  firewall-cmd:
+    service: {{ item }}
+    with items:
+      - http
+      - https
+    permanent: yes
+    state: enabled
+  notify: restart apache
+
+- name: Install MySQL
+  yum: name= {{ item }} state=latest
+  with_items:
+    - MySQL-python
+    - mysql
+    - mysql-server
+    - mysql-client
+  notify: Start the MySQL service
+
+- name: Configure the root credentials
+  action: command mysqladmin -u root -p $mysql_root_password
+
+- name: "Ensure mariadb packages are installed"
+  yum: name={{ item }} state="present"
+  with_items:
+    - mariadb
+    - mariadb-server
+  notify: start mariadb
+
+- name: istallation php
+  yum: name={{ item }} state=present
+  with_items: php_packages
+
